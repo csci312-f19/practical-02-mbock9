@@ -18,7 +18,7 @@ const createSlider = function createSlider(color, initialValue, callback) {
 
   // create a div to hold the color name and add it to the slider
   const colorLabel = document.createElement('div');
-  colorLabel.className = `color-label`;
+  colorLabel.className = 'color-label';
   colorLabel.innerHTML = `${color}:`;
   slider.appendChild(colorLabel);
 
@@ -37,12 +37,12 @@ const createSlider = function createSlider(color, initialValue, callback) {
 
   // set the range input's oninput function to update the readout and call the callback
   range.oninput = () => {
-     readout.innerHTML = range.value;
-     callback({ [color]: parseInt(range.value, 10) });
-   };
+    readout.innerHTML = range.value;
+    callback({ [color]: parseInt(range.value, 10) });
+  };
 
   // return the slider
-return slider;
+  return slider;
 };
 
 /**
@@ -77,17 +77,17 @@ const createColorPicker = function createColorPicker(initialValue, callback) { /
   // - merge the change into the the current color
   // - set the background color of the swatch
   // - call the callback with the current color
-  const update = function(newColor) {
-    currentColor = { ...currentColor, ...newColor }
+  const update = function update(newColor) {
+    currentColor = { ...currentColor, ...newColor };
     const { red, green, blue } = currentColor;
     colorBox.style.background = `rgb(${red}, ${green}, ${blue})`;
     callback(currentColor);
   };
 
   // add sliders for each color channel
-  Object.keys(currentColor).forEach((color) =>{
+  Object.keys(currentColor).forEach((color) => {
     // initialize slider in here
-    newSlider = createSlider(color, currentColor[color], update);
+    const newSlider = createSlider(color, currentColor[color], update);
     picker.appendChild(newSlider);
   });
 
